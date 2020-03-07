@@ -126,22 +126,22 @@ func configConfigOptions() (config.Config, error) {
 			Required:    true,
 		},
 		{
-			Key:         "logger.diagnostic.level",
-			Description: "Log level of diagnostic log.",
-			ValueType:   "string",
-			Required:    true,
+			Key:          "logger.diagnostic.level",
+			Description:  "Log level of diagnostic log.",
+			ValueType:    "string",
+			DefaultValue: "INFO",
 		},
 		{
 			Key:         "logger.diagnostic.backup",
 			Description: "Number of lotated old diagnostic log files.",
 			ValueType:   "int",
-			Required:    true,
+			DefaultValue: 5,
 		},
 		{
 			Key:         "logger.diagnostic.max_size",
 			Description: "Max size of diagnostic log file.",
 			ValueType:   "int64",
-			Required:    true,
+			DefaultValue: int64(1073741824),   // 1gb
 		},
 	})
 	return conf, err
