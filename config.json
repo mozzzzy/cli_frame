@@ -1,0 +1,10 @@
+{
+  "logger": {
+    "diagnostic": {
+      "path": "./diags.log",
+      "level": "DEBUG",
+      "backup": 5,
+      "max_size": 10485760
+    }
+  }
+}
