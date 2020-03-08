@@ -204,6 +204,7 @@ func main() {
 	if err != nil {
 		fmt.Printf("Falied to get config file path.\n")
 		fmt.Println(err)
+		fmt.Println(args)
 		return
 	}
 
