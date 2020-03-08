@@ -42,7 +42,7 @@ func initLogger(c config.Config) error {
 	keys := c.GetAllKeys()
 	for _, key := range keys {
 		elems := strings.Split(key, ".")
-		category := elems[0] + "." + elems[1]
+		category := elems[0]
 		if !contain(categories, category) {
 			categories = append(categories, category)
 		}
@@ -53,12 +53,11 @@ func initLogger(c config.Config) error {
 		if err != nil {
 			return err
 		}
-		categoryName := strings.Split(category, ".")[1]
-		path, err := categoryConfig.GetString(category + ".path")
+		path, err := categoryConfig.GetString("path")
 		if err != nil {
 			return err
 		}
-		levelStr, err := categoryConfig.GetString(category + ".level")
+		levelStr, err := categoryConfig.GetString("level")
 		if err != nil {
 			return err
 		}
@@ -66,17 +65,17 @@ func initLogger(c config.Config) error {
 		if err != nil {
 			return err
 		}
-		backup, err := categoryConfig.GetInt(category + ".backup")
+		backup, err := categoryConfig.GetInt("backup")
 		if err != nil {
 			return err
 		}
-		maxSize, err := categoryConfig.GetInt64(category + ".max_size")
+		maxSize, err := categoryConfig.GetInt64("max_size")
 		if err != nil {
 			return err
 		}
 
 		if err := logger.AddCategory(
-			categoryName,
+			category,
 			path,
 			level,
 			maxSize,
