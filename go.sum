@@ -6,6 +6,8 @@ github.com/mozzzzy/config v0.0.0-20200308025728-1f5dde507953 h1:qXvLz3+uItWQGXG1
 github.com/mozzzzy/config v0.0.0-20200308025728-1f5dde507953/go.mod h1:XgdXiOtNaI060tw14HbRgcjtdpc04dojK6fcVOfUzPo=
 github.com/mozzzzy/config v1.0.0 h1:H1M/Yst+aeXAoltC6nX+aAreQF0BYTj55ascik525dU=
 github.com/mozzzzy/config v1.0.0/go.mod h1:jhGINxNhynXYfKJJqrZNNzwKNSyfl7PFgkf+mnjwlzU=
+github.com/mozzzzy/config v1.0.1 h1:1a5/CZxY1QUOpVWbTZq+yNSh/9EkTngacSjAUfhavtQ=
+github.com/mozzzzy/config v1.0.1/go.mod h1:jhGINxNhynXYfKJJqrZNNzwKNSyfl7PFgkf+mnjwlzU=
 github.com/mozzzzy/logger v0.0.0-20200229105440-3e7b92e542d0 h1:mDsNnEaKSHm7sjokAUqCCUF+Lj8B166j/ldidN1FPrM=
 github.com/mozzzzy/logger v0.0.0-20200229105440-3e7b92e542d0/go.mod h1:IYoWkMQG/oOF133mzviZ95HFuWoXhzQWOnvJp2gg4Hw=
 github.com/mozzzzy/logger v1.0.0 h1:fcP1CZbdnsup6F8TshOG/qewZ9494w+OnbUMzJoFcxw=
