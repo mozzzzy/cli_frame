@@ -95,7 +95,11 @@ func configArgOptions() (arguments.Args, error) {
 			ShortKey:    "c",
 			Description: "Specify config file.",
 			ValueType:   "string",
-			Required:    true,
+		},
+		{
+			LongKey:     "help",
+			ShortKey:    "h",
+			Description: "Show help message and exit.",
 		},
 	})
 	return args, err
@@ -131,16 +135,16 @@ func configConfigOptions() (config.Config, error) {
 			DefaultValue: "INFO",
 		},
 		{
-			Key:         "logger.diagnostic.backup",
-			Description: "Number of lotated old diagnostic log files.",
-			ValueType:   "int",
+			Key:          "logger.diagnostic.backup",
+			Description:  "Number of lotated old diagnostic log files.",
+			ValueType:    "int",
 			DefaultValue: 5,
 		},
 		{
-			Key:         "logger.diagnostic.max_size",
-			Description: "Max size of diagnostic log file.",
-			ValueType:   "int64",
-			DefaultValue: int64(1073741824),   // 1gb
+			Key:          "logger.diagnostic.max_size",
+			Description:  "Max size of diagnostic log file.",
+			ValueType:    "int64",
+			DefaultValue: int64(1073741824), // 1gb
 		},
 	})
 	return conf, err
@@ -170,26 +174,42 @@ func parseConfig(path string) (config.Config, error) {
 }
 
 func main() {
+	// Configure configuration options
+	config, err := configConfigOptions()
+	if err != nil {
+		fmt.Printf("Falied to setup configuration rules.\n")
+		fmt.Println(err)
+		return
+	}
+
 	// Parse argument options
 	args, err := parseArgs()
 	if err != nil {
 		fmt.Printf("Falied to parse argument options.\n")
 		fmt.Println(err)
+		fmt.Println(args)
+		fmt.Println(config)
+		return
+	}
+
+	// If --help, -h option is specified, show usage and return.
+	if args.IsSet("help") {
+		fmt.Println(args)
+		fmt.Println(config)
 		return
 	}
 
 	// Get config file path
 	configFilePath, err := args.GetString("config")
 	if err != nil {
-		fmt.Printf("Falied get config file path.\n")
+		fmt.Printf("Falied to get config file path.\n")
 		fmt.Println(err)
 		return
 	}
 
 	// Parse config file
-	config, err := parseConfig(configFilePath)
-	if err != nil {
-		fmt.Printf("Falied to parse config file %v.\n", configFilePath)
+	if err := config.Parse(configFilePath); err != nil {
+		fmt.Printf("Failed to parse config file %v.\n", configFilePath)
 		fmt.Println(err)
 		fmt.Println(config)
 		return
